@@ -5,6 +5,7 @@ import DentistProfilePage from './pages/Dentists/DentistProfilePage';
 import ServiceDetailPage from './pages/Services/ServiceDetailPage';
 import ServicesPage from './pages/Services/ServicesPage';
 import PatientInfoPage from './pages/PatientInfo/PatientInfoPage';
+import BookAppointmentPage from './pages/BookAppointment/BookAppointmentPage';
 
 /**
  * App — Root component with client-side routing.
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/dentists/:id" element={<DentistProfilePage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
         <Route path="/patient-info" element={<PatientInfoPage />} />
+        <Route path="/book-appointment" element={<BookAppointmentPage />} />
         {/* Future routes:
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -28,7 +30,6 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/book-appointment" element={<BookAppointmentPage />} />
           <Route path="/faqs" element={<FaqPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/gallery" element={<GalleryPage />} />

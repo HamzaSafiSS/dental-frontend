@@ -1,0 +1,493 @@
+/* BookAppointmentPage.css */
+
+.book-appointment-page {
+  background-color: var(--color-bg-alt);
+  min-height: calc(100vh - 80px);
+  padding-bottom: var(--space-16);
+}
+
+.booking-header {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  padding: var(--space-16) 0;
+  text-align: center;
+  margin-bottom: var(--space-10);
+  background-image: radial-gradient(circle at center right, var(--color-teal-dark), transparent 50%);
+}
+
+.booking-header h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-2);
+  color: var(--color-white);
+}
+
+.booking-header p {
+  color: var(--color-blue-pale);
+  font-size: var(--text-lg);
+}
+
+.booking-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.booking-form-wrapper {
+  background-color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Progress Bar ── */
+.booking-progress {
+  margin-bottom: var(--space-8);
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--color-teal);
+  transition: width 0.4s var(--ease-out);
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.btn-back {
+  color: var(--color-blue);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  color: var(--color-navy);
+}
+
+/* ── Step Content ── */
+.booking-step {
+  padding-top: var(--space-2);
+}
+
+.booking-step h2 {
+  font-size: var(--text-2xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-2);
+}
+
+.booking-step-desc {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Grid Selections ── */
+.service-grid,
+.dentist-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 600px) {
+  .service-grid,
+  .dentist-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.selection-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  text-align: left;
+}
+
+.selection-card:hover {
+  border-color: var(--color-teal-light);
+  background-color: var(--color-blue-pale);
+  transform: translateY(-2px);
+}
+
+.selection-card.selected {
+  border-color: var(--color-teal);
+  background-color: var(--color-blue-pale);
+  color: var(--color-teal-dark);
+}
+
+.dentist-card-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.dentist-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: var(--text-lg);
+}
+
+.dentist-avatar.any {
+  background-color: var(--color-gray-400);
+}
+
+/* ── Time & Date ── */
+.date-picker-wrapper {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-picker-wrapper label {
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--color-navy);
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-4);
+}
+
+.time-card {
+  justify-content: center;
+  text-align: center;
+}
+
+/* ── Form Fields ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--color-navy);
+  font-size: var(--text-sm);
+}
+
+.form-control {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+/* ── Radio Groups ── */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 600px) {
+  .radio-group {
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-weight: 400 !important;
+  color: var(--color-text) !important;
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--color-teal);
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--radius-full);
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-teal-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:disabled {
+  background-color: var(--color-gray-300);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-outline-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: transparent;
+  color: var(--color-teal);
+  border: 2px solid var(--color-teal);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--radius-full);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-blue-pale);
+}
+
+.btn-block {
+  width: 100%;
+  padding: var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+
+/* ── Summary ── */
+.booking-summary {
+  background-color: var(--color-blue-pale);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-8);
+  border: 1px solid #BFDBFE;
+}
+
+.booking-summary h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+  color: var(--color-blue);
+}
+
+.booking-summary ul {
+  list-style: none;
+}
+
+.booking-summary ul li {
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.booking-summary ul li strong {
+  color: var(--color-navy);
+  margin-right: var(--space-2);
+}
+
+/* ── Confirmation View ── */
+.confirmation-view {
+  background-color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12) var(--space-6);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.success-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background-color: #D1FAE5; /* Light green */
+  color: var(--color-success);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+  box-shadow: 0 0 0 10px #ECFDF5;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.confirmation-view h2 {
+  font-size: var(--text-3xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-4);
+}
+
+.confirmation-msg {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  max-width: 600px;
+  margin: 0 auto var(--space-10);
+  line-height: var(--leading-relaxed);
+}
+
+.confirmation-details {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto var(--space-8);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  border-bottom: 1px dashed var(--color-gray-200);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row span {
+  color: var(--color-text-light);
+}
+
+.detail-row strong {
+  color: var(--color-navy);
+  font-weight: 600;
+  text-align: right;
+}
+
+.clinic-contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+
+@media (min-width: 600px) {
+  .clinic-contact-info {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-8);
+  }
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-teal);
+  font-weight: 500;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .confirmation-actions {
+    flex-direction: row;
+  }
+}
+
+/* Animations */
+.animation-fade-in {
+  animation: fadeIn 0.4s var(--ease-out) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: var(--color-white);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
