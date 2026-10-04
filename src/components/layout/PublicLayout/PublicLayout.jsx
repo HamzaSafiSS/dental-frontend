@@ -1,14 +1,15 @@
 import TopBar from '../TopBar/TopBar';
+import Navbar from '../Navbar/Navbar';
 
 /**
  * PublicLayout — wraps all public-facing pages.
- * Includes TopBar, Navbar (future), main content, and Footer (future).
+ * Includes TopBar, Navbar, main content, and Footer (future).
  */
 export default function PublicLayout({ children }) {
   return (
     <div className="site-wrapper">
       <TopBar />
-      {/* Navbar will be added in the next phase */}
+      <Navbar />
       <main className="main-content">
         {children}
       </main>
