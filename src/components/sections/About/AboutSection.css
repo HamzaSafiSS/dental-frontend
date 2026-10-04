@@ -1,0 +1,166 @@
+/* ═══════════════════════════════════════════════════════════
+   ABOUT THE CLINIC SECTION
+   Split-image structure: Image on left, text on right.
+   ═══════════════════════════════════════════════════════════ */
+
+.about-section {
+  padding-block: var(--space-24);
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.about-section__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* ── Image Side ── */
+.about-section__image-col {
+  position: relative;
+}
+
+.about-section__image-wrapper {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.about-section__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  display: block;
+}
+
+/* Decorative background shape */
+.about-section__image-bg {
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-2xl);
+  background: var(--color-blue-pale);
+  z-index: -1;
+}
+
+/* ── Text Side ── */
+.about-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.about-section__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+.about-section__heading {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-family: var(--font-heading);
+  color: var(--color-navy);
+  line-height: 1.15;
+}
+
+.about-section__description {
+  font-size: var(--text-lg);
+  color: var(--color-gray-500);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Checkmarks List ── */
+.about-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block: var(--space-2);
+}
+
+.about-section__list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--color-navy);
+  font-weight: 500;
+}
+
+.about-section__check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(20, 184, 166, 0.1); /* teal-light with opacity */
+  color: var(--color-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Button ── */
+.about-section__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-white);
+  background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-dark) 100%);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: 0 4px 12px rgba(14, 116, 144, 0.2);
+}
+
+.about-section__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(14, 116, 144, 0.3);
+  background: linear-gradient(135deg, var(--color-teal-light) 0%, var(--color-teal) 100%);
+}
+
+.about-section__btn svg {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.about-section__btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .about-section__container {
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding-block: var(--space-16);
+  }
+
+  .about-section__container {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .about-section__image-col {
+    max-width: 500px;
+    margin-inline: auto;
+  }
+}

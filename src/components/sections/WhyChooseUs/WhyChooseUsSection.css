@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════════════════
+   WHY CHOOSE US SECTION
+   5-column grid of icon-based cards.
+   ═══════════════════════════════════════════════════════════ */
+
+.why-choose-us {
+  padding-block: var(--space-20) var(--space-24);
+  background: var(--color-off-white);
+  border-top: 1px solid var(--color-border);
+}
+
+.why-choose-us__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.why-choose-us__label {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: var(--space-4);
+}
+
+.why-choose-us__heading {
+  font-size: var(--text-3xl);
+  color: var(--color-navy);
+}
+
+/* ── Grid ── */
+.why-choose-us__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-6);
+}
+
+/* ── Card ── */
+.why-choose-us__card {
+  background: var(--color-white);
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.03);
+  border: 1px solid var(--color-border);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.why-choose-us__card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-teal-light);
+}
+
+.why-choose-us__icon-wrapper {
+  width: 64px;
+  height: 64px;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: var(--color-blue-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-teal);
+  margin-bottom: var(--space-5);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.why-choose-us__card:hover .why-choose-us__icon-wrapper {
+  background: var(--color-teal);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.why-choose-us__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--color-navy);
+  margin-bottom: var(--space-3);
+  line-height: 1.2;
+}
+
+.why-choose-us__desc {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  line-height: var(--leading-relaxed);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .why-choose-us__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-us {
+    padding-block: var(--space-16);
+  }
+  
+  .why-choose-us__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-us__grid {
+    grid-template-columns: 1fr;
+  }
+}
