@@ -4,6 +4,7 @@ import HomePage from './pages/Home/HomePage';
 import DentistProfilePage from './pages/Dentists/DentistProfilePage';
 import ServiceDetailPage from './pages/Services/ServiceDetailPage';
 import ServicesPage from './pages/Services/ServicesPage';
+import PatientInfoPage from './pages/PatientInfo/PatientInfoPage';
 
 /**
  * App — Root component with client-side routing.
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/dentists/:id" element={<DentistProfilePage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
+        <Route path="/patient-info" element={<PatientInfoPage />} />
         {/* Future routes:
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
