@@ -9,6 +9,8 @@ import BookAppointmentPage from './pages/BookAppointment/BookAppointmentPage';
 import GalleryPage from './pages/Gallery/GalleryPage';
 import ReviewsPage from './pages/Reviews/ReviewsPage';
 import InsurancePaymentPage from './pages/InsurancePayment/InsurancePaymentPage';
+import EmergencyPage from './pages/Emergency/EmergencyPage';
+import FaqPage from './pages/Faq/FaqPage';
 
 /**
  * App — Root component with client-side routing.
@@ -28,6 +30,8 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/insurance" element={<InsurancePaymentPage />} />
+        <Route path="/emergency" element={<EmergencyPage />} />
+        <Route path="/faqs" element={<FaqPage />} />
         {/* Future routes:
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />

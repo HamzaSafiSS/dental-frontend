@@ -46,10 +46,12 @@ const NAV_LINKS = [
       { label: 'Insurance & Payment', path: '/insurance' },
       { label: 'Patient Reviews', path: '/reviews' },
       { label: 'Forms', path: '/patient-info#forms' },
+      { label: 'FAQs', path: '/faqs' },
     ],
   },
   { label: 'Before & After', path: '/gallery' },
   { label: 'Blog', path: '/blog' },
+  { label: 'Emergency', path: '/emergency' },
   { label: 'Contact', path: '/contact' },
 ];
 
