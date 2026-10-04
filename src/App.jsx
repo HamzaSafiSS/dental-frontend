@@ -11,6 +11,9 @@ import ReviewsPage from './pages/Reviews/ReviewsPage';
 import InsurancePaymentPage from './pages/InsurancePayment/InsurancePaymentPage';
 import EmergencyPage from './pages/Emergency/EmergencyPage';
 import FaqPage from './pages/Faq/FaqPage';
+import ContactPage from './pages/Contact/ContactPage';
+import BlogPage from './pages/Blog/BlogPage';
+import BlogDetailPage from './pages/Blog/BlogDetailPage';
 
 /**
  * App — Root component with client-side routing.
@@ -32,15 +35,12 @@ export default function App() {
         <Route path="/insurance" element={<InsurancePaymentPage />} />
         <Route path="/emergency" element={<EmergencyPage />} />
         <Route path="/faqs" element={<FaqPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogDetailPage />} />
         {/* Future routes:
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/dentists" element={<DentistsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<BlogDetailPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faqs" element={<FaqPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         */}
