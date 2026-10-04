@@ -43,7 +43,8 @@ const NAV_LINKS = [
     dropdown: [
       { label: 'Patient Information', path: '/patient-info' },
       { label: 'New Patients', path: '/patient-info#new-patients' },
-      { label: 'Insurance & Payment', path: '/patient-info#insurance' },
+      { label: 'Insurance & Payment', path: '/insurance' },
+      { label: 'Patient Reviews', path: '/reviews' },
       { label: 'Forms', path: '/patient-info#forms' },
     ],
   },

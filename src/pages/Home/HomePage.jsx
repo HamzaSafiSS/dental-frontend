@@ -6,6 +6,7 @@ import AboutSection from '../../components/sections/About/AboutSection';
 import WhyChooseUsSection from '../../components/sections/WhyChooseUs/WhyChooseUsSection';
 import FamilyCareSection from '../../components/sections/FamilyCare/FamilyCareSection';
 import DentistsSection from '../../components/sections/Dentists/DentistsSection';
+import ReviewsSection from '../../components/sections/Reviews/ReviewsSection';
 import './HomePage.css';
 
 /**
@@ -34,6 +35,7 @@ export default function HomePage() {
         <WhyChooseUsSection />
         <FamilyCareSection />
         <DentistsSection />
+        <ReviewsSection />
       </div>
     </PublicLayout>
   );

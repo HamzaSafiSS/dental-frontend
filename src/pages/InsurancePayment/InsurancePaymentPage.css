@@ -1,0 +1,236 @@
+/* InsurancePaymentPage.css */
+
+.finance-page {
+  background-color: var(--color-bg);
+  min-height: calc(100vh - 80px);
+}
+
+/* ── Header ── */
+.finance-header {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  padding: var(--space-20) 0;
+  text-align: center;
+  background-image: linear-gradient(135deg, var(--color-navy) 0%, #1e3a5f 100%);
+}
+
+.finance-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-blue-pale);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.finance-header h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-4);
+  color: var(--color-white);
+}
+
+.finance-header .subtitle {
+  font-size: var(--text-lg);
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--color-blue-pale);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Sections ── */
+.finance-section {
+  padding: var(--space-16) 0;
+}
+
+.finance-section.bg-light {
+  background-color: var(--color-bg-alt);
+  margin: 0 calc(50% - 50vw);
+  padding: var(--space-16) calc(50vw - 50%);
+}
+
+.finance-content-block {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.finance-content-block h2 {
+  font-size: var(--text-3xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.section-desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: var(--space-10);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Insurance Grid ── */
+.insurance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.insurance-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 600;
+  color: var(--color-navy);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-fast);
+  opacity: 0;
+}
+
+.insurance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-teal-light);
+}
+
+.check-icon {
+  color: var(--color-teal);
+  display: flex;
+}
+
+.insurance-note {
+  background-color: var(--color-blue-pale);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-blue);
+  color: var(--color-navy);
+}
+
+/* ── Payment Options ── */
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 600px) {
+  .payment-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.payment-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-normal);
+  opacity: 0;
+}
+
+.payment-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.payment-card h3 {
+  font-size: var(--text-lg);
+  color: var(--color-teal-dark);
+  margin-bottom: var(--space-2);
+}
+
+.payment-card p {
+  color: var(--color-text);
+  font-size: var(--text-base);
+}
+
+/* ── Cost Section ── */
+.cost-section {
+  padding-bottom: var(--space-24);
+}
+
+.cost-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10) var(--space-6);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .cost-card {
+    padding: var(--space-12) var(--space-16);
+  }
+}
+
+.cost-card h2 {
+  font-size: var(--text-3xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-6);
+}
+
+.cost-content p {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+}
+
+.cost-highlight {
+  background-color: var(--color-teal-light);
+  color: var(--color-teal-dark);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+  border: 2px dashed rgba(20, 184, 166, 0.4);
+}
+
+.cost-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .cost-actions {
+    flex-direction: row;
+  }
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+  border-radius: var(--radius-full);
+}
+
+/* Animations */
+.animation-fade-up {
+  animation: fadeUp 0.6s var(--ease-out) forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
