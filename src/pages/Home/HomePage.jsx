@@ -1,5 +1,7 @@
 import PublicLayout from '../../components/layout/PublicLayout/PublicLayout';
 import Hero from '../../components/sections/Hero/Hero';
+import TrustStrip from '../../components/sections/TrustStrip/TrustStrip';
+import ServicesSection from '../../components/sections/Services/ServicesSection';
 import './HomePage.css';
 
 /**
@@ -9,8 +11,9 @@ import './HomePage.css';
  * Current sections:
  *  ✅ Section 1 — Top Information Bar (via PublicLayout)
  *  ✅ Section 2 — Navigation Bar (via PublicLayout)
- *  ✅ Section 3 — Hero + Book Appointment + Trust Indicators
- *  🔜 Section 4 — Dental Services
+ *  ✅ Section 3 — Hero
+ *  ✅ Section 4 — Trust Strip
+ *  ✅ Section 5 — Dental Services
  *  🔜 ... and more
  */
 export default function HomePage() {
@@ -18,6 +21,8 @@ export default function HomePage() {
     <PublicLayout>
       <div className="home-page">
         <Hero />
+        <TrustStrip />
+        <ServicesSection />
       </div>
     </PublicLayout>
   );
