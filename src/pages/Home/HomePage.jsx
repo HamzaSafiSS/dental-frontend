@@ -4,6 +4,8 @@ import TrustStrip from '../../components/sections/TrustStrip/TrustStrip';
 import ServicesSection from '../../components/sections/Services/ServicesSection';
 import AboutSection from '../../components/sections/About/AboutSection';
 import WhyChooseUsSection from '../../components/sections/WhyChooseUs/WhyChooseUsSection';
+import FamilyCareSection from '../../components/sections/FamilyCare/FamilyCareSection';
+import DentistsSection from '../../components/sections/Dentists/DentistsSection';
 import './HomePage.css';
 
 /**
@@ -18,7 +20,8 @@ import './HomePage.css';
  *  ✅ Section 5 — Dental Services
  *  ✅ Section 6 — About the Clinic
  *  ✅ Section 7 — Why Choose Us
- *  🔜 ... and more
+ *  ✅ Section 8 — Family Care
+ *  ✅ Section 9 — Meet Our Dentists
  */
 export default function HomePage() {
   return (
@@ -29,6 +32,8 @@ export default function HomePage() {
         <ServicesSection />
         <AboutSection />
         <WhyChooseUsSection />
+        <FamilyCareSection />
+        <DentistsSection />
       </div>
     </PublicLayout>
   );
