@@ -9,6 +9,7 @@ import {
   IconPhone 
 } from '../../components/ui/Icons';
 import { CLINIC_DEFAULTS } from '../../config/constants';
+import { submitGuestAppointment } from '../../services/appointmentService';
 import './BookAppointmentPage.css';
 
 const SERVICES = [
@@ -56,6 +57,7 @@ export default function BookAppointmentPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleNext = () => setStep(s => s + 1);
   const handlePrev = () => setStep(s => s - 1);
@@ -80,16 +82,21 @@ export default function BookAppointmentPage() {
     handleNext();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg('');
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await submitGuestAppointment(formData);
       setIsConfirmed(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1500);
+    } catch (err) {
+      const msg = err?.response?.data?.message || 'Something went wrong while submitting your request. Please call us directly.';
+      setErrorMsg(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // ── Render Steps ──
@@ -267,6 +274,12 @@ export default function BookAppointmentPage() {
           <li><strong>Time:</strong> {formData.time}</li>
         </ul>
       </div>
+
+      {errorMsg && (
+        <div className="form-error-banner" style={{ marginTop: '20px' }}>
+          ⚠️ {errorMsg}
+        </div>
+      )}
 
       <button 
         className={`btn btn-primary mt-6 btn-block ${isSubmitting ? 'loading' : ''}`}
