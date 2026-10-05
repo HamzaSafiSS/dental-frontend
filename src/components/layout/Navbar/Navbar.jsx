@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   IconMenu,
   IconX,
@@ -10,6 +10,7 @@ import {
   IconClock,
 } from '../../ui/Icons';
 import { CLINIC_DEFAULTS } from '../../../config/constants';
+import { useAuth } from '../../../context/AuthContext';
 import './Navbar.css';
 
 /**
@@ -59,6 +60,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   // ── Scroll listener for sticky shadow ──
   useEffect(() => {
@@ -95,6 +98,12 @@ export default function Navbar() {
   const isActive = (path) => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+    setIsMobileOpen(false);
   };
 
   return (
@@ -153,6 +162,29 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               )
+            )}
+            
+            {/* Auth Links */}
+            {user ? (
+              <div className="navbar__dropdown">
+                <Link
+                  to={`/${user.role.toLowerCase()}/dashboard`}
+                  className={`navbar__link navbar__dropdown-trigger${location.pathname.includes('dashboard') ? ' navbar__link--active' : ''}`}
+                >
+                  Dashboard
+                  <IconChevronDown size={14} />
+                </Link>
+                <div className="navbar__dropdown-menu">
+                  <Link to={`/${user.role.toLowerCase()}/dashboard`} className="navbar__dropdown-item">My Dashboard</Link>
+                  <button onClick={handleLogout} className="navbar__dropdown-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit', color: 'inherit' }}>
+                    Logout
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Link to="/login" className={`navbar__link${isActive('/login') ? ' navbar__link--active' : ''}`}>
+                Login
+              </Link>
             )}
           </div>
 
@@ -252,6 +284,19 @@ export default function Navbar() {
               )}
             </div>
           ))}
+
+          {user ? (
+            <div>
+              <Link to={`/${user.role.toLowerCase()}/dashboard`} className="navbar__mobile-link" onClick={closeMobile}>Dashboard</Link>
+              <button onClick={handleLogout} className="navbar__mobile-link" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', color: '#e11d48' }}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div>
+              <Link to="/login" className="navbar__mobile-link" onClick={closeMobile}>Login</Link>
+            </div>
+          )}
         </div>
 
         {/* Footer with CTA + Contact */}
