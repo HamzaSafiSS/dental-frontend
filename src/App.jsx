@@ -14,6 +14,7 @@ import FaqPage from './pages/Faq/FaqPage';
 import ContactPage from './pages/Contact/ContactPage';
 import BlogPage from './pages/Blog/BlogPage';
 import BlogDetailPage from './pages/Blog/BlogDetailPage';
+import AboutPage from './pages/About/AboutPage';
 
 /**
  * App — Root component with client-side routing.
@@ -38,8 +39,8 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogDetailPage />} />
+        <Route path="/about" element={<AboutPage />} />
         {/* Future routes:
-          <Route path="/about" element={<AboutPage />} />
           <Route path="/dentists" element={<DentistsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
