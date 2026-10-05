@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PublicLayout from '../../components/layout/PublicLayout/PublicLayout';
+import { submitGuestReview } from '../../services/reviewService';
 import './ReviewsPage.css';
 
 const INITIAL_REVIEWS_DATA = [
@@ -77,25 +78,28 @@ export default function ReviewsPage() {
     setFormData(prev => ({ ...prev, rating }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call to submit review
-    setTimeout(() => {
+    try {
+      await submitGuestReview({
+        name: formData.name.trim() || 'Anonymous',
+        rating: formData.rating,
+        comment: formData.text,
+        treatment: formData.treatment || null,
+      });
+
       const newReview = {
         id: Date.now(),
         ...formData,
-        // Fallback for empty names to keep it clean
         name: formData.name.trim() || 'Anonymous'
       };
-      
-      // Add new review to the beginning of the list
+
       setReviews(prev => [newReview, ...prev]);
       setIsSubmitting(false);
       setIsSuccess(true);
-      
-      // Reset form after a delay so they can see success
+
       setTimeout(() => {
         setIsFormOpen(false);
         setIsSuccess(false);
@@ -107,7 +111,11 @@ export default function ReviewsPage() {
           text: ''
         });
       }, 3000);
-    }, 1200);
+    } catch (error) {
+      console.error('Failed to submit review:', error);
+      setIsSubmitting(false);
+      alert('Failed to submit your review. Please try again.');
+    }
   };
 
   return (
