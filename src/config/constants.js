@@ -1,7 +1,7 @@
 // API configuration constants
 
-export const API_BASE_URL = 'http://localhost:8080/api/v1';
-export const UPLOADS_BASE_URL = 'http://localhost:8080';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
+export const UPLOADS_BASE_URL = import.meta.env.VITE_UPLOADS_BASE_URL || 'http://localhost:8080';
 
 // Clinic defaults used when backend is unavailable
 export const CLINIC_DEFAULTS = {
