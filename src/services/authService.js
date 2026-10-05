@@ -5,8 +5,18 @@ export const login = async (email, password) => {
   return response.data;
 };
 
+export const register = async (userData) => {
+  const response = await api.post('/auth/register', userData);
+  return response.data;
+};
+
 export const logout = async (refreshToken) => {
   const response = await api.post('/auth/logout', { refreshToken });
+  return response.data;
+};
+
+export const forgotPassword = async (email) => {
+  const response = await api.post('/auth/forgot-password', { email });
   return response.data;
 };
 

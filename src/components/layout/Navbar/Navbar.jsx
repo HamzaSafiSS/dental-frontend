@@ -163,16 +163,24 @@ export default function Navbar() {
                 </Link>
               )
             )}
-            
-            {/* Auth Links */}
+          </div>
+
+          {/* ── Desktop CTA & Auth ── */}
+          <div className="navbar__actions" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Link to="/book-appointment" className="navbar__cta">
+              <IconCalendar size={15} />
+              Book Appointment
+            </Link>
+
             {user ? (
               <div className="navbar__dropdown">
                 <Link
                   to={`/${user.role.toLowerCase()}/dashboard`}
-                  className={`navbar__link navbar__dropdown-trigger${location.pathname.includes('dashboard') ? ' navbar__link--active' : ''}`}
+                  className="navbar__cta"
+                  style={{ backgroundColor: 'var(--color-secondary)' }}
                 >
                   Dashboard
-                  <IconChevronDown size={14} />
+                  <IconChevronDown size={14} style={{ marginLeft: '4px' }} />
                 </Link>
                 <div className="navbar__dropdown-menu">
                   <Link to={`/${user.role.toLowerCase()}/dashboard`} className="navbar__dropdown-item">My Dashboard</Link>
@@ -182,17 +190,20 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className={`navbar__link${isActive('/login') ? ' navbar__link--active' : ''}`}>
+              <Link 
+                to="/login" 
+                className="navbar__cta" 
+                style={{ 
+                  backgroundColor: 'var(--color-primary)', 
+                  color: 'white', 
+                  border: 'none',
+                  boxShadow: 'none'
+                }}
+              >
                 Login
               </Link>
             )}
           </div>
-
-          {/* ── Desktop CTA ── */}
-          <Link to="/book-appointment" className="navbar__cta">
-            <IconCalendar size={15} />
-            Book Appointment
-          </Link>
 
           {/* ── Mobile Controls ── */}
           <div className="navbar__mobile-actions">

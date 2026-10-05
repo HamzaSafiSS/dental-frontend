@@ -20,6 +20,8 @@ import AboutPage from './pages/About/AboutPage';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import LoginPage from './pages/Auth/LoginPage';
+import RegisterPage from './pages/Auth/RegisterPage';
+import ForgotPasswordPage from './pages/Auth/ForgotPasswordPage';
 
 // Dashboards
 import AdminDashboard from './pages/Dashboard/AdminDashboard';
@@ -54,6 +56,8 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
           {/* Protected Dashboards */}
           <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>

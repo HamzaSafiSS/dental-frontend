@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import PublicLayout from '../../components/layout/PublicLayout/PublicLayout';
 import './LoginPage.css';
@@ -94,7 +94,7 @@ export default function LoginPage() {
                 <input type="checkbox" />
                 <span>Remember for 30 days</span>
               </label>
-              <a href="#" className="forgot-password">Forgot password?</a>
+              <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
             </div>
             
             <button type="submit" className="btn btn-primary btn-block login-btn" disabled={isLoading}>
