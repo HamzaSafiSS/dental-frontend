@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PublicLayout from '../../components/layout/PublicLayout/PublicLayout';
+import { submitContactForm } from '../../services/contactService';
 import { 
   IconPhone, 
   IconMapPin, 
@@ -8,6 +9,7 @@ import {
   IconMail 
 } from '../../components/ui/Icons';
 import './ContactPage.css';
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -20,26 +22,35 @@ export default function ContactPage() {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMsg('');
+
+    try {
+      await submitContactForm(formData);
       setIsSuccess(true);
       setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
-      
-      // Reset success state after a few seconds
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+      // Reset success banner after 6 seconds
+      setTimeout(() => setIsSuccess(false), 6000);
+    } catch (err) {
+      const msg =
+        err?.response?.data?.message ||
+        'Something went wrong. Please try again or call us directly.';
+      setErrorMsg(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   return (
     <PublicLayout>
@@ -141,6 +152,13 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="contact-form">
+
+                    {errorMsg && (
+                      <div className="form-error-banner">
+                        ⚠️ {errorMsg}
+                      </div>
+                    )}
+
                     <div className="form-row">
                       <div className="form-group">
                         <label>Name</label>
@@ -163,7 +181,6 @@ export default function ContactPage() {
                           placeholder="Your phone number"
                           value={formData.phone}
                           onChange={handleChange}
-                          required 
                         />
                       </div>
                     </div>
@@ -217,6 +234,7 @@ export default function ContactPage() {
                     </button>
                   </form>
                 )}
+
               </div>
             </div>
           </div>

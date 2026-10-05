@@ -394,3 +394,17 @@
   70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
   100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
 }
+
+.form-error-banner {
+  background-color: #FEF2F2;
+  color: #DC2626;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  border-left: 4px solid #DC2626;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
