@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getDashboardStats } from '../../../services/dashboardService';
 
 export default function OverviewTab({ user, onTabChange }) {
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -51,7 +53,7 @@ export default function OverviewTab({ user, onTabChange }) {
           <button className="btn btn-outline-primary" onClick={() => onTabChange('services')}>
             Manage Services
           </button>
-          <button className="btn btn-outline-primary" onClick={() => window.location.href='/book-appointment'}>
+          <button className="btn btn-outline-primary" onClick={() => navigate('/book-appointment')}>
             Book Appointment
           </button>
         </div>

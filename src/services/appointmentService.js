@@ -21,3 +21,10 @@ export async function getAppointmentById(id) {
   const response = await api.get(`/appointments/${id}`);
   return response.data;
 }
+
+export async function getAllAppointments(page = 0, size = 20) {
+  const response = await api.get('/appointments', {
+    params: { page, size }
+  });
+  return response.data;
+}

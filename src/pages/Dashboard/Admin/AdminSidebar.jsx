@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
-import { IconMapPin, IconCalendar, IconClock } from '../../../components/ui/Icons'; // Using some arbitrary icons for tabs
+import { IconMapPin, IconCalendar, IconClock } from '../../../components/ui/Icons'; 
 
 export default function AdminSidebar({ activeTab, setActiveTab }) {
   const { user, logout } = useAuth();
@@ -32,6 +32,22 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
               onClick={() => setActiveTab('overview')}
             >
               <IconMapPin size={18} /> Dashboard
+            </button>
+          </li>
+          <li>
+            <button 
+              className={activeTab === 'appointments' ? 'active' : ''} 
+              onClick={() => setActiveTab('appointments')}
+            >
+              <IconCalendar size={18} /> Appointments
+            </button>
+          </li>
+          <li>
+            <button 
+              className={activeTab === 'patients' ? 'active' : ''} 
+              onClick={() => setActiveTab('patients')}
+            >
+              <IconCalendar size={18} /> Patients
             </button>
           </li>
           <li>

@@ -18,3 +18,8 @@ export const getPublicDoctors = async () => {
   const response = await api.get('/public/doctors?size=100');
   return response.data.data;
 };
+
+export const getAllAdminServices = async (page = 0, size = 20) => {
+  const response = await api.get('/services', { params: { page, size } });
+  return response.data;
+};

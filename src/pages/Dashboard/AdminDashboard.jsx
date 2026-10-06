@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import AdminSidebar from './Admin/AdminSidebar';
 import OverviewTab from './Admin/OverviewTab';
+import DoctorsTab from './Admin/DoctorsTab';
+import ServicesTab from './Admin/ServicesTab';
+import PatientsTab from './Admin/PatientsTab';
+import AppointmentsTab from './Admin/AppointmentsTab';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
@@ -10,6 +14,14 @@ export default function AdminDashboard() {
 
   const renderTabContent = () => {
     switch(activeTab) {
+      case 'doctors':
+        return <DoctorsTab />;
+      case 'services':
+        return <ServicesTab />;
+      case 'patients':
+        return <PatientsTab />;
+      case 'appointments':
+        return <AppointmentsTab />;
       case 'overview':
       default:
         return <OverviewTab user={user} onTabChange={setActiveTab} />;
