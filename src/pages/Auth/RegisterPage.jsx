@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { register } from '../../services/authService';
 import PublicLayout from '../../components/layout/PublicLayout/PublicLayout';
 import './LoginPage.css'; // Reusing login page styles
@@ -18,6 +18,7 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     setFormData({
@@ -48,7 +49,7 @@ export default function RegisterPage() {
       });
       setSuccess(true);
       setTimeout(() => {
-        navigate('/login');
+        navigate('/login', { state: { from: location.state?.from } });
       }, 2000);
     } catch (err) {
       console.error(err);

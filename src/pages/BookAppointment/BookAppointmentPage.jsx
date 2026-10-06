@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import PublicLayout from '../../components/layout/PublicLayout/PublicLayout';
 import { 
   IconCalendar, 
@@ -10,6 +10,7 @@ import {
 } from '../../components/ui/Icons';
 import { CLINIC_DEFAULTS } from '../../config/constants';
 import { submitGuestAppointment } from '../../services/appointmentService';
+import { useAuth } from '../../context/AuthContext';
 import './BookAppointmentPage.css';
 
 const SERVICES = [
@@ -40,6 +41,10 @@ const TIME_SLOTS = [
 ];
 
 export default function BookAppointmentPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useAuth();
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: '',
@@ -59,8 +64,46 @@ export default function BookAppointmentPage() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  useEffect(() => {
+    const saved = sessionStorage.getItem('bookingState');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setFormData(parsed.formData);
+      setStep(parsed.step);
+      sessionStorage.removeItem('bookingState');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        fullName: prev.fullName || `${user.firstName || ''} ${user.lastName || ''}`.trim(),
+        email: prev.email || user.email || '',
+        phone: prev.phone || user.phone || '',
+        patientType: 'existing'
+      }));
+    }
+  }, [user]);
+
   const handleNext = () => setStep(s => s + 1);
-  const handlePrev = () => setStep(s => s - 1);
+  const handlePrev = () => {
+    if (user && step === 6) {
+      setStep(4);
+    } else {
+      setStep(s => s - 1);
+    }
+  };
+
+  const handleExistingPatient = () => {
+    sessionStorage.setItem('bookingState', JSON.stringify({ formData, step: 6 }));
+    navigate('/login', { state: { from: location } });
+  };
+  
+  const handleNewPatient = () => {
+    sessionStorage.setItem('bookingState', JSON.stringify({ formData, step: 6 }));
+    navigate('/register', { state: { from: location } });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +122,11 @@ export default function BookAppointmentPage() {
 
   const handleTimeSelect = (time) => {
     setFormData(prev => ({ ...prev, time }));
-    handleNext();
+    if (user) {
+      setStep(6);
+    } else {
+      setStep(5);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -187,65 +234,18 @@ export default function BookAppointmentPage() {
 
   const renderStep5 = () => (
     <div className="booking-step animation-fade-in">
-      <h2>Step 5: Patient Information</h2>
-      <p className="booking-step-desc">Please provide your personal details.</p>
-      <div className="form-grid">
-        <div className="form-group">
-          <label>Full Name *</label>
-          <input type="text" name="fullName" className="form-control" value={formData.fullName} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Date of Birth *</label>
-          <input type="date" name="dob" className="form-control" value={formData.dob} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Phone Number *</label>
-          <input type="tel" name="phone" className="form-control" value={formData.phone} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Email Address</label>
-          <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} />
-        </div>
-        
-        <div className="form-group full-width">
-          <label>Are you a new patient?</label>
-          <div className="radio-group">
-            <label className="radio-label">
-              <input type="radio" name="patientType" value="new" checked={formData.patientType === 'new'} onChange={handleChange} />
-              Yes, I am a new patient
-            </label>
-            <label className="radio-label">
-              <input type="radio" name="patientType" value="existing" checked={formData.patientType === 'existing'} onChange={handleChange} />
-              No, I am an existing patient
-            </label>
-          </div>
-        </div>
-
-        <div className="form-group full-width">
-          <label>Preferred Contact Method</label>
-          <div className="radio-group">
-            <label className="radio-label">
-              <input type="radio" name="contactMethod" value="phone" checked={formData.contactMethod === 'phone'} onChange={handleChange} />
-              Phone Call
-            </label>
-            <label className="radio-label">
-              <input type="radio" name="contactMethod" value="sms" checked={formData.contactMethod === 'sms'} onChange={handleChange} />
-              SMS / Text
-            </label>
-            <label className="radio-label">
-              <input type="radio" name="contactMethod" value="email" checked={formData.contactMethod === 'email'} onChange={handleChange} />
-              Email
-            </label>
-          </div>
+      <h2>Step 5: Patient Authentication</h2>
+      <p className="booking-step-desc">Are you a new patient?</p>
+      <div className="form-group full-width" style={{ marginTop: '20px' }}>
+        <div style={{ display: 'flex', gap: '15px', flexDirection: 'column', maxWidth: '300px' }}>
+          <button className="btn btn-primary" onClick={handleNewPatient}>
+            Yes, I am a new patient
+          </button>
+          <button className="btn btn-outline-primary" onClick={handleExistingPatient}>
+            No, I am an existing patient
+          </button>
         </div>
       </div>
-      <button 
-        className="btn btn-primary mt-6" 
-        onClick={handleNext}
-        disabled={!formData.fullName || !formData.phone || !formData.dob}
-      >
-        Continue
-      </button>
     </div>
   );
 
