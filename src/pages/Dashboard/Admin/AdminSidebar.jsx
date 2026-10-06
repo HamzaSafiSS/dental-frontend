@@ -15,7 +15,11 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
     <aside className="admin-sidebar">
       <div className="sidebar-header">
         <h2>Admin Panel</h2>
-        <div className="user-info">
+        <div 
+          className={`user-info ${activeTab === 'profile' ? 'active-profile' : ''}`} 
+          onClick={() => setActiveTab('profile')}
+          style={{ cursor: 'pointer', padding: '10px', borderRadius: '8px', transition: 'background 0.2s' }}
+        >
           <div className="avatar">{user?.firstName?.charAt(0) || 'A'}</div>
           <div>
             <div className="name">{user?.firstName} {user?.lastName}</div>

@@ -7,6 +7,7 @@ import ServicesTab from './Admin/ServicesTab';
 import PatientsTab from './Admin/PatientsTab';
 import AppointmentsTab from './Admin/AppointmentsTab';
 import ReceptionistsTab from './Admin/ReceptionistsTab';
+import ProfileTab from './Admin/ProfileTab';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
@@ -25,6 +26,8 @@ export default function AdminDashboard() {
         return <PatientsTab />;
       case 'appointments':
         return <AppointmentsTab />;
+      case 'profile':
+        return <ProfileTab />;
       case 'overview':
       default:
         return <OverviewTab user={user} onTabChange={setActiveTab} />;
