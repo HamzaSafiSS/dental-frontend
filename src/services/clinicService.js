@@ -8,3 +8,13 @@ export const getClinicInfo = async () => {
   const response = await api.get('/public/clinic');
   return response.data.data;
 };
+
+export const getPublicServices = async () => {
+  const response = await api.get('/public/services?size=100');
+  return response.data.data;
+};
+
+export const getPublicDoctors = async () => {
+  const response = await api.get('/public/doctors?size=100');
+  return response.data.data;
+};

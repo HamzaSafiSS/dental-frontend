@@ -9,12 +9,28 @@ import {
   IconPhone 
 } from '../../components/ui/Icons';
 import { CLINIC_DEFAULTS } from '../../config/constants';
-import { submitGuestAppointment, createAppointment } from '../../services/appointmentService';
-import { getPublicServices, getPublicDoctors } from '../../services/clinicService';
+import { submitGuestAppointment } from '../../services/appointmentService';
 import { useAuth } from '../../context/AuthContext';
 import './BookAppointmentPage.css';
 
-// Services and Dentists fetched from API
+const SERVICES = [
+  'General Dentistry',
+  'Cleaning',
+  'Cosmetic Dentistry',
+  'Orthodontics',
+  'Pediatric Dentistry',
+  'Dental Implants',
+  'Emergency',
+  'Consultation',
+  'Other'
+];
+
+const DENTISTS = [
+  { id: 'any', name: 'Any Available Dentist' },
+  { id: '1', name: 'Dr. Sarah Ahmed (General & Cosmetic)' },
+  { id: '2', name: 'Dr. Michael Chen (Orthodontist)' },
+  { id: '3', name: 'Dr. Emily Davis (Pediatric)' }
+];
 
 const TIME_SLOTS = [
   '9:00 AM',
@@ -29,13 +45,9 @@ export default function BookAppointmentPage() {
   const location = useLocation();
   const { user } = useAuth();
 
-  const [services, setServices] = useState([]);
-  const [dentists, setDentists] = useState([]);
-  const [loadingData, setLoadingData] = useState(true);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    serviceId: '',
-    serviceName: '',
+    service: '',
     dentistId: '',
     dentistName: '',
     date: '',
@@ -51,26 +63,6 @@ export default function BookAppointmentPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [servicesRes, doctorsRes] = await Promise.all([
-          getPublicServices(),
-          getPublicDoctors()
-        ]);
-        setServices(servicesRes.content || []);
-        
-        const anyDoctor = { id: 'any', firstName: 'Any Available', lastName: 'Dentist' };
-        setDentists([anyDoctor, ...(doctorsRes.content || [])]);
-      } catch (err) {
-        console.error("Failed to fetch clinic data", err);
-      } finally {
-        setLoadingData(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const saved = sessionStorage.getItem('bookingState');
@@ -118,8 +110,8 @@ export default function BookAppointmentPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleServiceSelect = (serviceId, serviceName) => {
-    setFormData(prev => ({ ...prev, serviceId, serviceName }));
+  const handleServiceSelect = (service) => {
+    setFormData(prev => ({ ...prev, service }));
     handleNext();
   };
 
@@ -143,30 +135,7 @@ export default function BookAppointmentPage() {
     setErrorMsg('');
     
     try {
-      if (user) {
-        let [timeStr, modifier] = formData.time.split(' ');
-        let [hours, minutes] = timeStr.split(':');
-        if (hours === '12') hours = '00';
-        if (modifier === 'PM') hours = parseInt(hours, 10) + 12;
-        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes}:00`;
-        
-        let actualDoctorId = formData.dentistId;
-        if (actualDoctorId === 'any' && dentists.length > 1) {
-          actualDoctorId = dentists[1].id;
-        }
-
-        const payload = {
-          doctorId: actualDoctorId,
-          serviceId: formData.serviceId,
-          appointmentDate: formData.date,
-          startTime: formattedTime,
-          reasonForVisit: formData.reason,
-          patientNotes: ''
-        };
-        await createAppointment(payload);
-      } else {
-        await submitGuestAppointment(formData);
-      }
+      await submitGuestAppointment(formData);
       setIsConfirmed(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
@@ -183,13 +152,13 @@ export default function BookAppointmentPage() {
       <h2>Step 1: Select Service</h2>
       <p className="booking-step-desc">What type of dental care do you need today?</p>
       <div className="service-grid">
-        {loadingData ? <p>Loading services...</p> : services.map(svc => (
+        {SERVICES.map(svc => (
           <button 
-            key={svc.id} 
-            className={`selection-card ${formData.serviceId === svc.id ? 'selected' : ''}`}
-            onClick={() => handleServiceSelect(svc.id, svc.name)}
+            key={svc} 
+            className={`selection-card ${formData.service === svc ? 'selected' : ''}`}
+            onClick={() => handleServiceSelect(svc)}
           >
-            <span>{svc.name}</span>
+            <span>{svc}</span>
             <IconArrowRight size={16} />
           </button>
         ))}
@@ -202,22 +171,19 @@ export default function BookAppointmentPage() {
       <h2>Step 2: Select Dentist</h2>
       <p className="booking-step-desc">Do you have a preferred provider?</p>
       <div className="dentist-grid">
-        {loadingData ? <p>Loading doctors...</p> : dentists.map(d => {
-          const doctorName = d.id === 'any' ? `${d.firstName} ${d.lastName}` : `Dr. ${d.firstName} ${d.lastName}`;
-          return (
-            <button 
-              key={d.id} 
-              className={`selection-card ${formData.dentistId === d.id ? 'selected' : ''}`}
-              onClick={() => handleDentistSelect(d.id, doctorName)}
-            >
-              <div className="dentist-card-info">
-                {d.id !== 'any' && <div className="dentist-avatar">{d.firstName.charAt(0)}</div>}
-                {d.id === 'any' && <div className="dentist-avatar any">A</div>}
-                <span>{doctorName}</span>
-              </div>
-            </button>
-          );
-        })}
+        {DENTISTS.map(d => (
+          <button 
+            key={d.id} 
+            className={`selection-card ${formData.dentistId === d.id ? 'selected' : ''}`}
+            onClick={() => handleDentistSelect(d.id, d.name)}
+          >
+            <div className="dentist-card-info">
+              {d.id !== 'any' && <div className="dentist-avatar">{d.name.charAt(4)}</div>}
+              {d.id === 'any' && <div className="dentist-avatar any">A</div>}
+              <span>{d.name}</span>
+            </div>
+          </button>
+        ))}
       </div>
     </div>
   );
@@ -302,7 +268,7 @@ export default function BookAppointmentPage() {
       <div className="booking-summary">
         <h3>Appointment Summary</h3>
         <ul>
-          <li><strong>Service:</strong> {formData.serviceName}</li>
+          <li><strong>Service:</strong> {formData.service}</li>
           <li><strong>Dentist:</strong> {formData.dentistName}</li>
           <li><strong>Date:</strong> {formData.date}</li>
           <li><strong>Time:</strong> {formData.time}</li>
@@ -350,7 +316,7 @@ export default function BookAppointmentPage() {
         </div>
         <div className="detail-row">
           <span>Service</span>
-          <strong>{formData.serviceName}</strong>
+          <strong>{formData.service}</strong>
         </div>
       </div>
 
