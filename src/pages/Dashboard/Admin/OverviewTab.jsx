@@ -33,12 +33,8 @@ export default function OverviewTab({ user, onTabChange }) {
           <div className="stat-card-value">{loading ? '-' : stats?.totalDoctors || 0}</div>
         </div>
         <div className="stat-card animation-fade-up" style={{ animationDelay: '0.3s' }}>
-          <div className="stat-card-title">Today's Revenue</div>
-          <div className="stat-card-value">{loading ? '-' : `$${stats?.todayRevenue || 0}`}</div>
-        </div>
-        <div className="stat-card animation-fade-up" style={{ animationDelay: '0.4s' }}>
-          <div className="stat-card-title">Monthly Revenue</div>
-          <div className="stat-card-value">{loading ? '-' : `$${stats?.monthRevenue || 0}`}</div>
+          <div className="stat-card-title">Active Receptionists</div>
+          <div className="stat-card-value">{loading ? '-' : stats?.activeReceptionists || 0}</div>
         </div>
       </div>
 
