@@ -55,7 +55,7 @@ export default function ProfileTab() {
           <p><strong>First Name:</strong> {user?.firstName}</p>
           <p><strong>Last Name:</strong> {user?.lastName}</p>
           <p><strong>Email:</strong> {user?.email}</p>
-          <p><strong>Role:</strong> Administrator</p>
+          <p><strong>Role:</strong> <span style={{textTransform: 'capitalize'}}>{user?.role?.toLowerCase() || 'User'}</span></p>
         </div>
       </div>
 
