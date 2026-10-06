@@ -1,0 +1,26 @@
+.dentists-page {
+  width: 100%;
+}
+
+.dentists-page__header {
+  background-color: var(--color-surface-alt);
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.dentists-page__title {
+  font-size: 2.5rem;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+}
+
+.dentists-page__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dentists-page__content {
+  padding: 40px 0;
+}

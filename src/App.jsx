@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/utils/ScrollToTop';
 import HomePage from './pages/Home/HomePage';
+import DentistsPage from './pages/Dentists/DentistsPage';
 import DentistProfilePage from './pages/Dentists/DentistProfilePage';
 import ServiceDetailPage from './pages/Services/ServiceDetailPage';
 import ServicesPage from './pages/Services/ServicesPage';
@@ -41,6 +42,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/dentists" element={<DentistsPage />} />
           <Route path="/dentists/:id" element={<DentistProfilePage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/patient-info" element={<PatientInfoPage />} />
@@ -77,7 +79,6 @@ export default function App() {
           </Route>
 
           {/* Future routes:
-            <Route path="/dentists" element={<DentistsPage />} />
             <Route path="/register" element={<RegisterPage />} />
           */}
         </Routes>
