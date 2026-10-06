@@ -68,7 +68,7 @@ export default function InsurancePaymentPage() {
           </section>
 
           {/* Payment Options Section */}
-          <section className="finance-section bg-light">
+          <section className="finance-section bg-light" id="payment-options">
             <div className="finance-content-block">
               <h2>Payment Options</h2>
               <p className="section-desc">
