@@ -20,7 +20,7 @@
 .navbar__container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
   padding-block: 0;
   height: 72px;
 }
@@ -204,6 +204,9 @@
   box-shadow: 0 2px 8px rgba(14, 116, 144, 0.25);
 }
 
+.navbar__actions {
+  margin-left: auto;
+}
 .navbar__cta:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(14, 116, 144, 0.35);
@@ -219,6 +222,7 @@
   display: none;
   align-items: center;
   gap: var(--space-2);
+  margin-left: auto;
 }
 
 .navbar__mobile-phone {
