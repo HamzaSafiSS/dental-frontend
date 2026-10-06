@@ -1,0 +1,232 @@
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.admin-sidebar {
+  width: 260px;
+  background-color: white;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-sidebar .sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-sidebar .sidebar-header h2 {
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+}
+
+.admin-sidebar .user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-sidebar .avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.admin-sidebar .name {
+  font-weight: 600;
+  color: var(--color-text-dark);
+  font-size: 0.95rem;
+}
+
+.admin-sidebar .role {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-sidebar .sidebar-nav {
+  flex: 1;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+.admin-sidebar .sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-sidebar .sidebar-nav button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.admin-sidebar .sidebar-nav button:hover {
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary);
+}
+
+.admin-sidebar .sidebar-nav button.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.admin-sidebar .sidebar-footer {
+  padding: 24px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-sidebar .btn-logout {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: #e11d48;
+  border: 1px solid #e11d48;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-sidebar .btn-logout:hover {
+  background-color: #ffe4e6;
+}
+
+.admin-sidebar .btn-home {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-main);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.admin-sidebar .btn-home:hover {
+  background-color: var(--color-border);
+}
+
+.admin-main {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.dashboard-header {
+  margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: var(--color-text-dark);
+  margin-bottom: 8px;
+}
+
+.dashboard-header p {
+  color: var(--color-text-light);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: white;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.stat-card-title {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.dashboard-card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-card-title {
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.quick-actions-grid {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+}
+
+@media (max-width: 992px) {
+  .admin-dashboard {
+    flex-direction: column;
+  }
+  
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+}

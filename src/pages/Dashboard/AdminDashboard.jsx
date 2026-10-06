@@ -1,15 +1,42 @@
+import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import AdminSidebar from './Admin/AdminSidebar';
+import OverviewTab from './Admin/OverviewTab';
+import './AdminDashboard.css';
 
 export default function AdminDashboard() {
-  const { user, logout } = useAuth();
-  
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const renderTabContent = () => {
+    switch(activeTab) {
+      case 'overview':
+      default:
+        return <OverviewTab user={user} onTabChange={setActiveTab} />;
+    }
+  };
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
+
   return (
-    <div style={{ padding: '40px', fontFamily: 'sans-serif' }}>
-      <h1>Admin Dashboard</h1>
-      <p>Welcome, {user?.firstName} {user?.lastName}!</p>
-      <button onClick={logout} style={{ padding: '8px 16px', background: '#e11d48', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-        Logout
-      </button>
+    <div className="admin-dashboard">
+      <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      
+      <main className="admin-main">
+        <div className="dashboard-header">
+          <h1>{getGreeting()}, {user?.firstName}!</h1>
+          <p>Welcome to the Bright Smiles Admin Control Panel.</p>
+        </div>
+        
+        <div className="dashboard-content">
+          {renderTabContent()}
+        </div>
+      </main>
     </div>
   );
 }
