@@ -43,9 +43,9 @@ export default function PatientsTab() {
             <tbody>
               {patients.map(p => (
                 <tr key={p.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
-                  <td style={{ padding: '12px 8px', fontWeight: 500 }}>{p.user?.firstName} {p.user?.lastName}</td>
-                  <td style={{ padding: '12px 8px' }}>{p.user?.email}</td>
-                  <td style={{ padding: '12px 8px' }}>{p.user?.phone || 'N/A'}</td>
+                  <td style={{ padding: '12px 8px', fontWeight: 500 }}>{p.firstName} {p.lastName}</td>
+                  <td style={{ padding: '12px 8px' }}>{p.email}</td>
+                  <td style={{ padding: '12px 8px' }}>{p.phone || 'N/A'}</td>
                   <td style={{ padding: '12px 8px' }}>{p.dateOfBirth || 'N/A'}</td>
                 </tr>
               ))}
