@@ -23,3 +23,13 @@ export const getAllAdminServices = async (page = 0, size = 20) => {
   const response = await api.get('/services', { params: { page, size } });
   return response.data;
 };
+
+export const createService = async (data) => {
+  const response = await api.post('/services', data);
+  return response.data;
+};
+
+export const updateService = async (id, data) => {
+  const response = await api.patch(`/services/${id}`, data);
+  return response.data;
+};

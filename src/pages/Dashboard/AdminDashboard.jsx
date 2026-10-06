@@ -6,6 +6,7 @@ import DoctorsTab from './Admin/DoctorsTab';
 import ServicesTab from './Admin/ServicesTab';
 import PatientsTab from './Admin/PatientsTab';
 import AppointmentsTab from './Admin/AppointmentsTab';
+import ReceptionistsTab from './Admin/ReceptionistsTab';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
@@ -16,6 +17,8 @@ export default function AdminDashboard() {
     switch(activeTab) {
       case 'doctors':
         return <DoctorsTab />;
+      case 'receptionists':
+        return <ReceptionistsTab />;
       case 'services':
         return <ServicesTab />;
       case 'patients':

@@ -60,6 +60,14 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
           </li>
           <li>
             <button 
+              className={activeTab === 'receptionists' ? 'active' : ''} 
+              onClick={() => setActiveTab('receptionists')}
+            >
+              <IconCalendar size={18} /> Receptionists
+            </button>
+          </li>
+          <li>
+            <button 
               className={activeTab === 'services' ? 'active' : ''} 
               onClick={() => setActiveTab('services')}
             >
