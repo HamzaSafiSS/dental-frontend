@@ -3,24 +3,34 @@
 }
 
 .dentists-page__header {
-  background-color: var(--color-surface-alt);
-  padding: 60px 0 40px;
+  background: linear-gradient(135deg, rgba(10, 37, 64, 0.90) 0%, rgba(13, 30, 51, 0.82) 100%),
+              url('/images/dentists-hero.jpg') center 20% / cover no-repeat;
+  padding-block: var(--space-24) var(--space-20);
   text-align: center;
+  color: var(--color-white);
 }
 
 .dentists-page__title {
-  font-size: 2.5rem;
-  color: var(--color-text-primary);
-  margin-bottom: 16px;
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  margin-bottom: var(--space-4);
+  color: var(--color-white);
 }
 
 .dentists-page__subtitle {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
+  font-size: var(--text-xl);
   max-width: 600px;
-  margin: 0 auto;
+  margin-inline: auto;
+  color: var(--color-teal-light);
+  line-height: var(--leading-relaxed);
 }
 
 .dentists-page__content {
   padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .dentists-page__title {
+    font-size: var(--text-4xl);
+  }
 }
