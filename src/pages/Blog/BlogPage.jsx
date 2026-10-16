@@ -15,12 +15,11 @@ export default function BlogPage() {
   return (
     <PublicLayout>
       <div className="blog-page">
-        {/* Header */}
-        <header className="blog-header">
+        {/* Page Header */}
+        <header className="blog-page__header">
           <div className="container">
-            <span className="blog-badge">Dental Health Tips</span>
-            <h1>Our Blog</h1>
-            <p className="subtitle">
+            <h1 className="blog-page__title">Our Blog</h1>
+            <p className="blog-page__subtitle">
               Expert advice, latest news, and practical tips to help you maintain a healthy, beautiful smile for life.
             </p>
           </div>

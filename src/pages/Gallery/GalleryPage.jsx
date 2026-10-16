@@ -154,13 +154,11 @@ export default function GalleryPage() {
   return (
     <PublicLayout>
       <div className="gallery-page">
-        {/* Header */}
-        <header className="gallery-hero">
-          <div className="gallery-hero-bg"></div>
-          <div className="container gallery-hero-content">
-            <span className="gallery-hero-badge">Patient Results</span>
-            <h1>Before & After Gallery</h1>
-            <p className="subtitle">
+        {/* Page Header */}
+        <header className="gallery-page__header">
+          <div className="container">
+            <h1 className="gallery-page__title">Before & After Gallery</h1>
+            <p className="gallery-page__subtitle">
               Real results from real patients. See how our specialized treatments can transform your smile.
             </p>
             <p className="consent-note">* All images are shared with explicit patient consent.</p>

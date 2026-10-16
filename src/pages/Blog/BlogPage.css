@@ -6,46 +6,41 @@
   padding-bottom: var(--space-20);
 }
 
-/* ── Header ── */
-.blog-header {
-  background-color: var(--color-navy);
-  color: var(--color-white);
-  padding: var(--space-16) 0;
+/* ── Page Header ── */
+.blog-page__header {
+  background: linear-gradient(135deg, rgba(6, 27, 46, 0.65) 0%, rgba(10, 37, 64, 0.58) 100%),
+              url('/images/about-clinic.jpg') center / cover no-repeat;
+  padding-block: var(--space-24) var(--space-20);
   text-align: center;
-  background-image: radial-gradient(circle at top, var(--color-teal-dark), transparent 70%);
+  color: var(--color-white);
 }
 
-.blog-badge {
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--color-teal-light);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-full);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: var(--space-6);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.blog-header h1 {
-  font-size: var(--text-4xl);
+.blog-page__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
   margin-bottom: var(--space-4);
   color: var(--color-white);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
-.blog-header .subtitle {
-  font-size: var(--text-lg);
+.blog-page__subtitle {
+  font-size: var(--text-xl);
   max-width: 600px;
-  margin: 0 auto;
+  margin-inline: auto;
   color: var(--color-blue-pale);
   line-height: var(--leading-relaxed);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 768px) {
+  .blog-page__title {
+    font-size: var(--text-4xl);
+  }
 }
 
 /* ── Layout ── */
 .blog-container {
-  margin-top: var(--space-10);
+  margin-top: var(--space-16);
 }
 
 /* ── Filters ── */

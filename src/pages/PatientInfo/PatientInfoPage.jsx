@@ -17,15 +17,13 @@ export default function PatientInfoPage() {
   return (
     <PublicLayout>
       <div className="patient-info-page">
-        {/* Premium Page Header */}
-        <header className="patient-info-hero">
-          <div className="patient-info-hero-bg">
-             <div className="patient-info-hero-overlay"></div>
-          </div>
-          <div className="container patient-info-hero-content">
-            <span className="patient-info-hero-badge">Patient Resources</span>
-            <h1>Patient Information</h1>
-            <p className="subtitle">Everything you need to know before, during, and after your visit to Bright Smiles Dental Care.</p>
+        {/* Page Header */}
+        <header className="patient-info-page__header">
+          <div className="container">
+            <h1 className="patient-info-page__title">Patient Information</h1>
+            <p className="patient-info-page__subtitle">
+              Everything you need to know before, during, and after your visit to Bright Smiles Dental Care.
+            </p>
           </div>
         </header>
 

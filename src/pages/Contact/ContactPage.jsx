@@ -55,12 +55,11 @@ export default function ContactPage() {
   return (
     <PublicLayout>
       <div className="contact-page">
-        {/* Header */}
-        <header className="contact-header">
+        {/* Page Header */}
+        <header className="contact-page__header">
           <div className="container">
-            <span className="contact-badge">Get in Touch</span>
-            <h1>Contact Us</h1>
-            <p className="subtitle">
+            <h1 className="contact-page__title">Contact Us</h1>
+            <p className="contact-page__subtitle">
               We're here to answer your questions and help you schedule your next visit. Reach out to us via phone, email, or by visiting our clinic.
             </p>
           </div>
